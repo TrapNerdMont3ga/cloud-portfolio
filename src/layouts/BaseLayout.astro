@@ -1,5 +1,6 @@
 ---
 import '../styles/global.css'
+import Mascot from '../components/Mascot.astro'
 
 interface Props {
   title?: string
@@ -13,8 +14,138 @@ const { title = 'TrapNerd Cloud Portfolio' } = Astro.props
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <title>{title}</title>
+
+  <!-- Favicon -->
+  <link rel="icon" type="image/png" href="/favicon.png" />
+  <link rel="apple-touch-icon" href="/favicon.png" />
 </head>
+
 <body>
+  <header class="site-header">
+    <div class="header-left">
+    <a href="#home" class="brand">
+ <span class="brand-mascot">
+  <img
+    src="/images/trapnerd-mascot.png"
+    alt="TrapNerd logo"
+    width="32"
+    height="32"
+  />
+</span>
+  <span>TrapNerd</span>
+</a>
+    </div>
+
+    <nav class="header-nav" id="primary-nav">
+      <ul>
+        <li><a href="#home">Home</a></li>
+        <li><a href="#services">Services</a></li>
+        <li><a href="#portfolio">Portfolio</a></li>
+        <li><a href="#contact">Contact</a></li>
+      </ul>
+    </nav>
+
+    <div class="header-right">
+      <a href="#contact" class="cta-btn">Get Started</a>
+
+      <button
+        id="theme-toggle"
+        aria-label="Toggle dark/light mode"
+        class="icon-btn"
+      >
+        🌙 / ☀️
+      </button>
+
+      <button
+        id="menu-toggle"
+        aria-label="Open menu"
+        class="icon-btn hamburger"
+      >
+        ☰
+      </button>
+    </div>
+  </header>
+
   <slot />
+
+  <script is:inline>
+    document.addEventListener('DOMContentLoaded', () => {
+      // =========================
+      // Theme Toggle
+      // =========================
+      const body = document.body;
+      const toggleButton = document.getElementById('theme-toggle');
+
+      const savedTheme = localStorage.getItem('theme');
+      if (savedTheme === 'light') {
+        body.classList.add('light');
+      }
+
+      if (toggleButton) {
+        toggleButton.addEventListener('click', () => {
+          body.classList.toggle('light');
+          localStorage.setItem(
+            'theme',
+            body.classList.contains('light') ? 'light' : 'dark'
+          );
+        });
+      }
+      const updateToggleEmoji = () => {
+  toggleButton.textContent = body.classList.contains('light') ? '☀️' : '🌙';
+};
+updateToggleEmoji();
+toggleButton.addEventListener('click', () => {
+  body.classList.toggle('light');
+  localStorage.setItem('theme', body.classList.contains('light') ? 'light' : 'dark');
+  updateToggleEmoji();
+});
+
+      // =========================
+      // Sticky Header Shrink
+      // =========================
+      const header = document.querySelector('.site-header');
+      if (header) {
+        window.addEventListener('scroll', () => {
+          header.classList.toggle('scrolled', window.scrollY > 20);
+        });
+      }
+
+      // =========================
+      // Active Section Highlight
+      // =========================
+      const sections = document.querySelectorAll('section[id]');
+      const navLinks = document.querySelectorAll('.header-nav a');
+
+      window.addEventListener('scroll', () => {
+        let currentId = null;
+
+        sections.forEach(section => {
+          const sectionTop = section.offsetTop - 120;
+          if (window.scrollY >= sectionTop) {
+            currentId = section.id;
+          }
+        });
+
+        navLinks.forEach(link => {
+          link.classList.remove('active');
+          if (currentId && link.getAttribute('href') === `#${currentId}`) {
+            link.classList.add('active');
+          }
+        });
+      });
+
+      // =========================
+      // Mobile Hamburger Menu
+      // =========================
+      const menuToggle = document.getElementById('menu-toggle');
+      const primaryNav = document.getElementById('primary-nav');
+
+      if (menuToggle && primaryNav) {
+        menuToggle.addEventListener('click', () => {
+          primaryNav.classList.toggle('open');
+        });
+      }
+    });
+  </script>
 </body>
 </html>

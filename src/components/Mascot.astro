@@ -1,0 +1,53 @@
+---
+interface Props {
+  size?: number
+}
+
+const { size = 40 } = Astro.props
+---
+<svg
+  width={size}
+  height={size}
+  viewBox="0 0 128 128"
+  xmlns="http://www.w3.org/2000/svg"
+  class="mascot"
+  aria-hidden="true"
+>
+  <!-- Head -->
+  <circle cx="64" cy="64" r="40" class="mascot-head" />
+
+  <!-- Glasses -->
+  <rect x="34" y="50" width="20" height="14" rx="4" class="mascot-glasses" />
+  <rect x="74" y="50" width="20" height="14" rx="4" class="mascot-glasses" />
+  <line x1="54" y1="57" x2="74" y2="57" class="mascot-glasses" />
+
+  <!-- Smirk -->
+  <path
+    d="M54 76 Q64 80 74 76"
+    class="mascot-smirk"
+  />
+
+  <!-- Cap brim -->
+  <path
+    d="M26 44 Q64 26 102 44"
+    class="mascot-cap"
+  />
+</svg>
+
+<style>
+  .mascot-head {
+    fill: none;
+    stroke: var(--brand-color);
+    stroke-width: 6;
+  }
+
+  .mascot-glasses,
+  .mascot-cap,
+  .mascot-smirk {
+    fill: none;
+    stroke: var(--brand-color);
+    stroke-width: 5;
+    stroke-linecap: round;
+    stroke-linejoin: round;
+  }
+</style>

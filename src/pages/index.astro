@@ -1,10 +1,151 @@
 ---
 import BaseLayout from '../layouts/BaseLayout.astro'
+import Mascot from '../components/Mascot.astro'
 ---
 
-<BaseLayout title="TrapNerd | Cloud Portfolio">
-  <main>
-    <h1>TrapNerd Solutions</h1>
-    <p>Cloud • Security • AI</p>
-  </main>
+<BaseLayout>
+  <!-- Home Section -->
+<section id="home" class="section home-section">
+  <div class="container hero-grid">
+
+    <div class="hero-copy">
+  <h1>
+    Cloud, AI, and Security Systems<br />
+    Built for Real-World Businesses
+  </h1>
+
+  <p class="hero-subtext">
+    From cloud architecture to AI automation and security systems,
+    TrapNerd delivers reliable, scalable solutions that actually work.
+  </p>
+
+  <div class="hero-actions">
+    <a href="#contact" class="cta-btn">
+      Get a Free Infrastructure Review
+    </a>
+
+    <a href="#portfolio" class="hero-secondary">
+      See how we solve real problems →
+    </a>
+  </div>
+</div>
+
+    <div class="hero-mascot">
+  <img
+    src="/images/trapnerd-mascot.png"
+    alt="TrapNerd Mascot"
+    loading="eager"
+  />
+</div>
+
+  </div>
+</section>
+
+  <!-- Services Section -->
+  <section id="services" class="section services-section">
+    <div class="container">
+      <h2>Our Services</h2>
+<ul class="no-bullets">
+  <li>☁️ Cloud Architecture & AWS Solutions</li>
+  <li>🔐 Cybersecurity & Zero-Trust Setup</li>
+  <li>🤖 AI Automation & Intelligent Workflows</li>
+  <li>🛠️ Ongoing Support & Consulting</li>
+</ul>
+      <p>We tailor solutions to fit your unique business needs and goals.</p>
+    </div>
+  </section>
+
+  <!-- Portfolio Section -->
+<section id="portfolio" class="section portfolio-section">
+  <div class="container">
+    <h2>Portfolio</h2>
+    <p>Check out some of our projects and client work.</p>
+
+    <div class="portfolio-grid">
+      <!-- Project Card 1 -->
+      <div class="project-card">
+        <div class="project-icon">
+          <svg viewBox="0 0 128 128" xmlns="http://www.w3.org/2000/svg">
+            <g class="mascot-outline">
+              <circle cx="64" cy="64" r="32"/>
+            </g>
+          </svg>
+        </div>
+        <h3>Project One</h3>
+        <p>Host a Website on Amazon S3.</p>
+      </div>
+
+      <!-- Project Card 2 -->
+      <div class="project-card">
+        <div class="project-icon">
+          <svg viewBox="0 0 128 128" xmlns="http://www.w3.org/2000/svg">
+            <g class="mascot-outline">
+              <circle cx="64" cy="64" r="32"/>
+            </g>
+          </svg>
+        </div>
+        <h3>Project Two</h3>
+        <p>Host a Website on Amazon S3.</p>
+      </div>
+
+      <!-- Project Card 3 -->
+      <div class="project-card">
+        <div class="project-icon">
+          <svg viewBox="0 0 128 128" xmlns="http://www.w3.org/2000/svg">
+            <g class="mascot-outline">
+              <circle cx="64" cy="64" r="32"/>
+            </g>
+          </svg>
+        </div>
+        <h3>Project Three</h3>
+        <p>Cloud Security with AWS IAM.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- Contact Section -->
+<section id="contact" class="section contact-section">
+  <div class="container">
+    <h2>Contact Us</h2>
+    <p>Get in touch for a free consultation or quote.</p>
+
+<form id="contact-form">
+  <input type="text" name="name" placeholder="Name" required />
+  <input type="email" name="email" placeholder="Email" required />
+  <textarea name="message" placeholder="Message" required></textarea>
+  <button type="submit">Send Message</button>
+</form>
+
+<script type="module">
+  const form = document.getElementById('contact-form');
+
+  form.addEventListener('submit', async (e) => {
+    e.preventDefault();
+
+    const formData = new FormData(form);
+    const data = Object.fromEntries(formData);
+
+    try {
+      const res = await fetch('/api/contact', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify(data),
+      });
+
+      const result = await res.json();
+
+      if (res.ok) {
+        alert('Message sent successfully!');
+        form.reset();
+      } else {
+        alert(result.error || 'Failed to send message.');
+      }
+    } catch (err) {
+      console.error(err);
+      alert('Error sending message.');
+    }
+  });
+</script>
+</section>
 </BaseLayout>
