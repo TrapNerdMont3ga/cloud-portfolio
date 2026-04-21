@@ -11,13 +11,13 @@ jobs:
 
     steps:
       - name: Checkout Repository
-        uses: actions/checkout@v6     # ← Updated (Node 24 ready)
+        uses: actions/checkout@v6
 
       - name: Setup Node.js
-        uses: actions/setup-node@v6   # ← Updated (Node 24 ready)
+        uses: actions/setup-node@v6
         with:
           node-version: 24
-          cache: 'npm'                # keeps install fast
+          cache: 'npm'
 
       - name: Install Dependencies
         run: npm ci
@@ -25,16 +25,29 @@ jobs:
       - name: Build Astro
         run: npm run build
 
-      - name: Sync dist to S3
-        uses: jakejarvis/s3-sync-action@v0.5.1
+      # === AWS DEPLOYMENT ===
+      - name: Configure AWS credentials
+        uses: aws-actions/configure-aws-credentials@v4
         with:
-          args: --delete
-        env:
-          AWS_S3_BUCKET: ${{ secrets.S3_BUCKET_NAME }}
-          AWS_ACCESS_KEY_ID: ${{ secrets.AWS_ACCESS_KEY_ID }}
-          AWS_SECRET_ACCESS_KEY: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
-          AWS_REGION: ${{ secrets.AWS_REGION }}
-          SOURCE_DIR: dist/
+          aws-access-key-id: ${{ secrets.AWS_ACCESS_KEY_ID }}
+          aws-secret-access-key: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
+          aws-region: ${{ secrets.AWS_REGION }}
+
+      - name: Sync dist to S3
+        run: |
+          aws s3 sync dist/ s3://${{ secrets.S3_BUCKET_NAME }} \
+            --delete \
+            --cache-control "public, max-age=31536000, immutable" \
+            --exclude "*.html" \
+            --exclude "index.html" \
+            --exclude "404.html"
+
+          aws s3 sync dist/ s3://${{ secrets.S3_BUCKET_NAME }} \
+            --delete \
+            --cache-control "public, max-age=0, must-revalidate" \
+            --include "*.html" \
+            --include "index.html" \
+            --include "404.html"
 
       - name: Invalidate CloudFront cache
         run: |
@@ -42,6 +55,4 @@ jobs:
             --distribution-id "${{ secrets.CLOUDFRONT_DISTRIBUTION_ID }}" \
             --paths "/*"
         env:
-          AWS_ACCESS_KEY_ID: ${{ secrets.AWS_ACCESS_KEY_ID }}
-          AWS_SECRET_ACCESS_KEY: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
           AWS_REGION: us-east-1
