@@ -10,7 +10,7 @@ import Mascot from '../components/Mascot.astro'
 
     <div class="hero-copy">
   <h1>
-    Fucking Cloud, AI, and Security Systems<br />
+    Cloud, AI, and Security Systems<br />
     Built for Real-World Businesses
   </h1>
 
@@ -62,18 +62,41 @@ import Mascot from '../components/Mascot.astro'
     <p>Check out some of our projects and client work.</p>
 
     <div class="portfolio-grid">
-      <!-- Project Card 1 -->
-      <div class="project-card">
-        <div class="project-icon">
-          <svg viewBox="0 0 128 128" xmlns="http://www.w3.org/2000/svg">
-            <g class="mascot-outline">
-              <circle cx="64" cy="64" r="32"/>
-            </g>
-          </svg>
-        </div>
-        <h3>Project One</h3>
-        <p>Host a Website on Amazon S3.</p>
-      </div>
+<!-- Project Card: OptiPrim3 -->
+<div class="project-card">
+
+  <!-- Video Preview -->
+  <div class="project-media">
+    <video controls poster="thumbnail.jpg">
+      <source src="/videos/hero.mov" type="video/mp4">
+      Your browser does not support the video tag.
+    </video>
+  </div>
+
+  <!-- Content -->
+  <div class="project-content">
+    <h3>OptiPrim3 – AI Logistics Platform</h3>
+
+    <p class="project-description">
+      A scalable logistics platform designed to streamline load intake, dispatch workflows, and future container tracking through cloud-based architecture and automation.
+    </p>
+
+    <!-- Key Highlights -->
+    <ul class="project-highlights">
+      <li>Cloud-based intake & workflow automation</li>
+      <li>Designed for real-time container tracking</li>
+      <li>Security-focused architecture (IAM, monitoring)</li>
+    </ul>
+
+    <!-- CTA Button -->
+    <div class="project-actions">
+      <a href="https://optiprim3.com" target="_blank" class="project-btn">
+        View Live Site →
+      </a>
+    </div>
+  </div>
+
+</div>
 
       <!-- Project Card 2 -->
       <div class="project-card">

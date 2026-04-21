@@ -397,11 +397,52 @@ body.light {
   .brand-name { font-size: 1.1rem; }
   .brand-mascot svg { width: 40px; }
 }
-
-
 .mascot-outline {
   fill: var(--tn-mascot-primary);
   stroke: var(--tn-mascot-primary);
+}
+/* ================================
+   Project Cards Display
+   ================================ */
+.project-card {
+  background: #111;
+  border-radius: 16px;
+  overflow: hidden;
+  padding: 20px;
+  color: #fff;
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+.project-card:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 10px 25px rgba(0,0,0,0.4);
+}
+
+.project-media video {
+  width: 100%;
+  border-radius: 10px;
+  margin-bottom: 15px;
+}
+
+.project-highlights {
+  margin: 10px 0;
+  padding-left: 18px;
+}
+
+.project-highlights li {
+  margin-bottom: 5px;
+  font-size: 0.9rem;
+}
+
+.project-btn {
+  display: inline-block;
+  margin-top: 10px;
+  padding: 10px 16px;
+  background: #00ff99;
+  color: #000;
+  text-decoration: none;
+  border-radius: 8px;
+  font-weight: bold;
 }
 /* ================================
    Optional Styling for Theme Toggle Button
