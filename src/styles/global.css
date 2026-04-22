@@ -404,46 +404,41 @@ body.light {
 /* ================================
    Project Cards Display
    ================================ */
-.project-card {
-  background: #111;
-  border-radius: 16px;
-  overflow: hidden;
-  padding: 20px;
-  color: #fff;
-  transition: transform 0.2s ease, box-shadow 0.2s ease;
+   .card-bg {
+  position: absolute;
+  inset: 0;
+  transform: scale(1.04);
+  transition: transform 0.65s cubic-bezier(0.25,0.46,0.45,0.94);
+}
+.project-card:hover .card-bg { transform: scale(1.1); }
+
+.bg-1 { background: linear-gradient(135deg, #0a1628 0%, #0f2a4a 40%, #0a1f3d 70%, #061018 100%); }
+.bg-2 { background: linear-gradient(135deg, #0f0a1e 0%, #1a0f35 40%, #0f1a35 70%, #061018 100%); }
+.bg-3 { background: linear-gradient(135deg, #0a1a10 0%, #0d2a1a 40%, #081a28 70%, #061018 100%); }
+
+.card-grid-pattern {
+  position: absolute;
+  inset: 0;
+  background-image:
+    linear-gradient(rgba(56,189,248,0.04) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(56,189,248,0.04) 1px, transparent 1px);
+  background-size: 32px 32px;
 }
 
-.project-card:hover {
-  transform: translateY(-5px);
-  box-shadow: 0 10px 25px rgba(0,0,0,0.4);
+.card-glow-orb {
+  position: absolute;
+  border-radius: 50%;
+  filter: blur(40px);
 }
+.orb-blue { width: 120px; height: 120px; background: rgba(56,189,248,0.18); top: -20px; right: -10px; }
+.orb-purple { width: 100px; height: 100px; background: rgba(139,92,246,0.2); bottom: 0; left: 20px; }
 
-.project-media video {
-  width: 100%;
-  border-radius: 10px;
-  margin-bottom: 15px;
-}
-
-.project-highlights {
-  margin: 10px 0;
-  padding-left: 18px;
-}
 
 .project-highlights li {
   margin-bottom: 5px;
   font-size: 0.9rem;
 }
 
-.project-btn {
-  display: inline-block;
-  margin-top: 10px;
-  padding: 10px 16px;
-  background: #00ff99;
-  color: #000;
-  text-decoration: none;
-  border-radius: 8px;
-  font-weight: bold;
-}
 /* ================================
    Optional Styling for Theme Toggle Button
    ================================ */
@@ -526,28 +521,7 @@ body.light {
 /* ================================
     Project Cards Styling
    ================================ */
-.project-card {
-  background-color: var(--color-secondary);
-  border: 1px solid var(--tn-mascot-muted);
-  border-radius: 0.75rem;
-  padding: var(--spacing-md);
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  text-align: center;
-  transition: transform 0.25s ease, border-color 0.25s ease;
-}
 
-.project-card:hover {
-  transform: translateY(-5px);
-  border-color: var(--color-primary);
-}
-
-.project-icon svg {
-  width: 64px;
-  height: 64px;
-  margin-bottom: var(--spacing-sm);
-}
 
 .project-card h3 {
   margin-bottom: var(--spacing-sm);

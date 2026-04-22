@@ -1,0 +1,297 @@
+---
+// ProjectCard.astro
+// Usage: <ProjectCard title="..." description="..." videoSrc="..." poster="..." href="..." tags={[...]} />
+
+interface Props {
+  title: string;
+  description: string;
+  videoSrc: string;
+  poster?: string;
+  href: string;
+  tags?: string[];
+  badge?: string; // e.g. "Live", "Case Study"
+}
+
+const { title, description, videoSrc, poster = "", href, tags = [], badge } = Astro.props;
+---
+
+<a class="project-card" href={href} target="_blank" rel="noopener noreferrer">
+  <!-- Video Layer -->
+  <div class="card-media">
+    <video
+      class="card-video"
+      src={videoSrc}
+      poster={poster}
+      muted
+      loop
+      playsinline
+      preload="none"
+    ></video>
+    <div class="card-noise"></div>
+  </div>
+
+  <!-- Gradient Overlay + Content -->
+  <div class="card-overlay">
+    {badge && <span class="card-badge">{badge}</span>}
+
+    <div class="card-body">
+      <div class="card-tags">
+        {tags.map(tag => <span class="card-tag">{tag}</span>)}
+      </div>
+      <h3 class="card-title">{title}</h3>
+      <p class="card-desc">{description}</p>
+      <div class="card-cta">
+        <span>View Project</span>
+        <svg width="14" height="14" viewBox="0 0 14 14" fill="none" xmlns="http://www.w3.org/2000/svg">
+          <path d="M2 7h10M7 2l5 5-5 5" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+        </svg>
+      </div>
+    </div>
+  </div>
+
+  <!-- Glow border on hover -->
+  <div class="card-border"></div>
+</a>
+
+<style>
+  /* ── Card Shell ──────────────────────────────── */
+  .project-card {
+    position: relative;
+    display: block;
+    width: 100%;
+    aspect-ratio: 16 / 10;
+    border-radius: 1rem;
+    overflow: hidden;
+    text-decoration: none;
+    cursor: pointer;
+    isolation: isolate;
+    background-color: #0d1629;
+  }
+
+  /* ── Video Layer ─────────────────────────────── */
+  .card-media {
+    position: absolute;
+    inset: 0;
+    z-index: 0;
+  }
+
+  .card-video {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    display: block;
+    transform: scale(1.04);
+    transition: transform 0.65s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+    will-change: transform;
+  }
+
+  .project-card:hover .card-video {
+    transform: scale(1.1);
+  }
+
+  /* Fine grain texture overlay */
+  .card-noise {
+    position: absolute;
+    inset: 0;
+    background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='0.06'/%3E%3C/svg%3E");
+    background-size: 128px 128px;
+    opacity: 0.35;
+    mix-blend-mode: overlay;
+    pointer-events: none;
+  }
+
+  /* ── Gradient Overlay ────────────────────────── */
+  .card-overlay {
+    position: absolute;
+    inset: 0;
+    z-index: 1;
+    background: linear-gradient(
+      160deg,
+      transparent 0%,
+      transparent 30%,
+      rgba(8, 14, 30, 0.55) 55%,
+      rgba(5, 10, 22, 0.92) 80%,
+      rgba(4, 8, 18, 0.97) 100%
+    );
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    padding: 1.1rem 1.25rem;
+    transition: background 0.4s ease;
+  }
+
+  .project-card:hover .card-overlay {
+    background: linear-gradient(
+      160deg,
+      transparent 0%,
+      transparent 20%,
+      rgba(8, 14, 30, 0.65) 50%,
+      rgba(5, 10, 22, 0.94) 78%,
+      rgba(4, 8, 18, 0.98) 100%
+    );
+  }
+
+  /* ── Badge ───────────────────────────────────── */
+  .card-badge {
+    align-self: flex-start;
+    background: rgba(56, 189, 248, 0.15);
+    border: 1px solid rgba(56, 189, 248, 0.35);
+    color: #7dd3fc;
+    font-size: 0.65rem;
+    font-weight: 600;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    padding: 0.25rem 0.65rem;
+    border-radius: 999px;
+    backdrop-filter: blur(4px);
+    -webkit-backdrop-filter: blur(4px);
+  }
+
+  /* ── Body ────────────────────────────────────── */
+  .card-body {
+    display: flex;
+    flex-direction: column;
+    gap: 0.35rem;
+  }
+
+  .card-tags {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.4rem;
+    margin-bottom: 0.2rem;
+  }
+
+  .card-tag {
+    font-size: 0.62rem;
+    font-weight: 500;
+    letter-spacing: 0.06em;
+    text-transform: uppercase;
+    color: rgba(148, 163, 184, 0.85);
+    border: 1px solid rgba(148, 163, 184, 0.2);
+    padding: 0.18rem 0.55rem;
+    border-radius: 999px;
+  }
+
+  .card-title {
+    font-family: 'Syne', 'DM Sans', system-ui, sans-serif;
+    font-size: clamp(1rem, 2.5vw, 1.3rem);
+    font-weight: 700;
+    letter-spacing: -0.02em;
+    color: #f1f5f9;
+    margin: 0;
+    line-height: 1.2;
+    transition: color 0.25s ease;
+  }
+
+  .project-card:hover .card-title {
+    color: #ffffff;
+  }
+
+  .card-desc {
+    font-size: clamp(0.72rem, 1.5vw, 0.82rem);
+    color: #94a3b8;
+    line-height: 1.5;
+    margin: 0;
+    max-width: 38ch;
+    opacity: 0;
+    transform: translateY(6px);
+    transition: opacity 0.35s ease 0.05s, transform 0.35s ease 0.05s;
+  }
+
+  .project-card:hover .card-desc {
+    opacity: 1;
+    transform: translateY(0);
+  }
+
+  .card-cta {
+    display: flex;
+    align-items: center;
+    gap: 0.4rem;
+    font-size: 0.78rem;
+    font-weight: 600;
+    color: #38bdf8;
+    letter-spacing: 0.02em;
+    margin-top: 0.3rem;
+    opacity: 0;
+    transform: translateY(6px);
+    transition: opacity 0.35s ease 0.1s, transform 0.35s ease 0.1s;
+  }
+
+  .project-card:hover .card-cta {
+    opacity: 1;
+    transform: translateY(0);
+  }
+
+  .card-cta svg {
+    transition: transform 0.25s ease;
+  }
+
+  .project-card:hover .card-cta svg {
+    transform: translateX(3px);
+  }
+
+  /* ── Glow Border ─────────────────────────────── */
+  .card-border {
+    position: absolute;
+    inset: 0;
+    z-index: 2;
+    border-radius: inherit;
+    border: 1px solid rgba(148, 163, 184, 0.12);
+    pointer-events: none;
+    transition: border-color 0.35s ease, box-shadow 0.35s ease;
+  }
+
+  .project-card:hover .card-border {
+    border-color: rgba(56, 189, 248, 0.3);
+    box-shadow:
+      inset 0 0 0 1px rgba(56, 189, 248, 0.15),
+      0 0 32px rgba(56, 189, 248, 0.06);
+  }
+
+  /* ── Focus Accessibility ─────────────────────── */
+  .project-card:focus-visible {
+    outline: 2px solid #38bdf8;
+    outline-offset: 3px;
+  }
+
+  /* ── Responsive ──────────────────────────────── */
+  @media (max-width: 640px) {
+    .project-card {
+      aspect-ratio: 4 / 3;
+      border-radius: 0.75rem;
+    }
+
+    .card-desc {
+      opacity: 1;
+      transform: none;
+      font-size: 0.75rem;
+    }
+
+    .card-cta {
+      opacity: 1;
+      transform: none;
+    }
+  }
+</style>
+
+<script>
+  // Play video on hover, pause on leave
+  document.querySelectorAll('.project-card').forEach((card) => {
+    const video = card.querySelector('.card-video') as HTMLVideoElement;
+    if (!video) return;
+
+    card.addEventListener('mouseenter', () => {
+      video.play().catch(() => {}); // silently fail if autoplay blocked
+    });
+
+    card.addEventListener('mouseleave', () => {
+      video.pause();
+      video.currentTime = 0;
+    });
+
+    // Touch: play on tap, let href handle navigation
+    card.addEventListener('touchstart', () => {
+      video.play().catch(() => {});
+    }, { passive: true });
+  });
+</script>

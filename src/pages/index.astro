@@ -1,6 +1,7 @@
 ---
 import BaseLayout from '../layouts/BaseLayout.astro'
 import Mascot from '../components/Mascot.astro'
+import ProjectCard from '../components/ProjectCard.astro'
 ---
 
 <BaseLayout>
@@ -63,68 +64,40 @@ import Mascot from '../components/Mascot.astro'
 
     <div class="portfolio-grid">
 <!-- Project Card: OptiPrim3 -->
-<div class="project-card">
-
-  <!-- Video Preview -->
-  <div class="project-media">
-    <video controls poster="thumbnail.jpg">
-      <source src="/videos/hero.mov" type="video/mp4">
-      Your browser does not support the video tag.
-    </video>
-  </div>
-
-  <!-- Content -->
-  <div class="project-content">
-    <h3>OptiPrim3 – AI Logistics Platform</h3>
-
-    <p class="project-description">
-      A scalable logistics platform designed to streamline load intake, dispatch workflows, and future container tracking through cloud-based architecture and automation.
-    </p>
-
-    <!-- Key Highlights -->
-    <ul class="project-highlights">
-      <li>Cloud-based intake & workflow automation</li>
-      <li>Designed for real-time container tracking</li>
-      <li>Security-focused architecture (IAM, monitoring)</li>
-    </ul>
-
-    <!-- CTA Button -->
-    <div class="project-actions">
-      <a href="https://optiprim3.com" target="_blank" class="project-btn">
-        View Live Site →
-      </a>
-    </div>
-  </div>
-
-</div>
+<ProjectCard
+  title="OptiPrim3 – AI Logistics Platform"
+  description="Scalable logistics with dispatch automation and container tracking."
+  videoSrc="/videos/hero.mov"
+  poster="/images/optiprim3-thumb.jpg"
+  href="https://optiprim3.com"
+  tags={["AWS", "AI", "Logistics"]}
+  badge="Live"
+  bg="bg-1"  
+/>
 
       <!-- Project Card 2 -->
-      <div class="project-card">
-        <div class="project-icon">
-          <svg viewBox="0 0 128 128" xmlns="http://www.w3.org/2000/svg">
-            <g class="mascot-outline">
-              <circle cx="64" cy="64" r="32"/>
-            </g>
-          </svg>
-        </div>
-        <h3>Project Two</h3>
-        <p>Host a Website on Amazon S3.</p>
-      </div>
-
+<ProjectCard
+  title="Static Site on AWS S3"
+  description="Zero-server hosting with global CDN distribution, custom domains, and automated CI/CD deployment."
+  videoSrc="/videos/s3-site.mov"
+  poster="/images/s3-thumb.jpg"
+  href="https://your-s3-project-link.com"
+  tags={["S3", "CloudFront", "DNS"]}
+  badge="Case Study"
+  bg="bg-2" 
+/>
       <!-- Project Card 3 -->
-      <div class="project-card">
-        <div class="project-icon">
-          <svg viewBox="0 0 128 128" xmlns="http://www.w3.org/2000/svg">
-            <g class="mascot-outline">
-              <circle cx="64" cy="64" r="32"/>
-            </g>
-          </svg>
-        </div>
-        <h3>Project Three</h3>
-        <p>Cloud Security with AWS IAM.</p>
-      </div>
-    </div>
-  </div>
+<ProjectCard
+  title="Cloud Security with AWS IAM"
+  description="Role-based access control architecture with least-privilege policies and automated compliance auditing."
+  videoSrc="/videos/iam-security.mov"
+  poster="/images/iam-thumb.jpg"
+  href="https://your-iam-project-link.com"
+  tags={["IAM", "Security", "Audit"]}
+  badge="Zero-Trust"
+  bg="bg-3" 
+/>
+
 </section>
 
 <!-- Contact Section -->
