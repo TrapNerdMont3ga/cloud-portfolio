@@ -5,56 +5,72 @@ import ProjectCard from '../components/ProjectCard.astro'
 ---
 
 <BaseLayout>
-  <!-- Home Section -->
-<section id="home" class="section home-section">
-  <div class="container hero-grid">
+<!-- Home / Hero Section - Upgraded TrapNerd Style -->
+<section id="home" class="hero-section relative min-h-screen flex items-center overflow-hidden">
+  
+  <!-- Background Layer -->
+  <div class="absolute inset-0 bg-gradient-to-br from-[#0a1628] via-[#0f1f3d] to-[#0a0f1f]"></div>
+  
+  <!-- Subtle Grid Pattern -->
+  <div class="absolute inset-0 card-grid-pattern" style="background-size: 50px 50px; opacity: 0.6;"></div>
+  
+  <!-- Glow Orbs -->
+  <div class="card-glow-orb orb-blue" style="top: 10%; left: 10%; width: 300px; height: 300px;"></div>
+  <div class="card-glow-orb orb-purple" style="bottom: 15%; right: 15%; width: 250px; height: 250px;"></div>
 
-    <div class="hero-copy">
-  <h1>
-    Cloud, AI, and Security Systems<br />
-    Built for Real-World Businesses
-  </h1>
+  <div class="container relative z-10">
+    <div class="hero-grid grid md:grid-cols-2 gap-12 items-center">
 
-  <p class="hero-subtext">
-    From cloud architecture to AI automation and security systems,
-    TrapNerd delivers reliable, scalable solutions that actually work.
-  </p>
+      <!-- Left: Text Content -->
+      <div class="hero-copy max-w-2xl">
+        <h1 class="text-5xl md:text-6xl font-bold leading-none tracking-tighter text-white mb-6">
+          Cloud, AI, and Security<br />
+          Systems<br />
+          <span class="text-sky-400">Built for Real-World Businesses</span>
+        </h1>
 
-  <div class="hero-actions">
-    <a href="#contact" class="cta-btn">
-      Get a Free Infrastructure Review
-    </a>
+        <p class="text-xl text-zinc-400 mb-10 max-w-lg">
+          From cloud architecture to AI automation and security systems,<br />
+          TrapNerd delivers reliable, scalable solutions that actually work.
+        </p>
 
-    <a href="#portfolio" class="hero-secondary">
-      See how we solve real problems →
-    </a>
-  </div>
-</div>
+        <div class="hero-actions flex flex-col sm:flex-row gap-4">
+          <a href="#contact" 
+             class="cta-btn px-8 py-4 text-lg font-semibold rounded-2xl bg-sky-500 hover:bg-sky-400 text-black transition-all duration-300 flex items-center justify-center gap-3 group">
+            Get a Free Infrastructure Review
+            <span class="group-hover:translate-x-1 transition-transform">→</span>
+          </a>
 
-    <div class="hero-mascot">
-  <img
-    src="/images/trapnerd-mascot.png"
-    alt="TrapNerd Mascot"
-    loading="eager"
-  />
-</div>
+          <a href="#portfolio" 
+             class="hero-secondary px-8 py-4 text-lg font-medium text-sky-400 hover:text-sky-300 flex items-center gap-2 transition-colors">
+            See how we solve real problems →
+          </a>
+        </div>
+      </div>
 
-  </div>
-</section>
+      <!-- Right: Mascot -->
+      <div class="hero-mascot flex justify-center md:justify-end">
+        <div class="relative">
+          <img
+            src="/images/trapnerd-mascot.png"
+            alt="TrapNerd Mascot"
+            class="w-full max-w-[380px] drop-shadow-2xl transition-transform duration-500 hover:scale-105"
+            loading="eager"
+          />
+          <!-- Subtle glow behind mascot -->
+          <div class="absolute inset-0 bg-sky-500/10 blur-3xl rounded-full -z-10 scale-110"></div>
+        </div>
+      </div>
 
-  <!-- Services Section -->
-  <section id="services" class="section services-section">
-    <div class="container">
-      <h2>Our Services</h2>
-<ul class="no-bullets">
-  <li>☁️ Cloud Architecture & AWS Solutions</li>
-  <li>🔐 Cybersecurity & Zero-Trust Setup</li>
-  <li>🤖 AI Automation & Intelligent Workflows</li>
-  <li>🛠️ Ongoing Support & Consulting</li>
-</ul>
-      <p>We tailor solutions to fit your unique business needs and goals.</p>
     </div>
-  </section>
+  </div>
+
+  <!-- Scroll indicator -->
+  <!-- <div class="absolute bottom-10 left-1/2 -translate-x-1/2 text-zinc-500 flex flex-col items-center gap-2 text-sm">
+    <span>Scroll to explore</span>
+    <div class="w-px h-12 bg-gradient-to-b from-transparent via-zinc-500 to-transparent"></div>
+  </div> -->
+</section>
 
   <!-- Portfolio Section -->
 <section id="portfolio" class="section portfolio-section">
@@ -83,7 +99,7 @@ import ProjectCard from '../components/ProjectCard.astro'
   poster="/images/s3-thumb.jpg"
   href="https://your-s3-project-link.com"
   tags={["S3", "CloudFront", "DNS"]}
-  badge="Case Study"
+  badge="Case Study" 
   bg="bg-2" 
 />
       <!-- Project Card 3 -->
