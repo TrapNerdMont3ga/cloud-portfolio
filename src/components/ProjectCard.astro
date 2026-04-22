@@ -9,15 +9,23 @@ interface Props {
   poster?: string;
   href: string;
   tags?: string[];
-  badge?: string; // e.g. "Live", "Case Study"
+  badge?: string;
+  bg?: string;  // 👈 add this line
 }
 
-const { title, description, videoSrc, poster = "", href, tags = [], badge } = Astro.props;
+// const { title, description, videoSrc, poster = "", href, tags = [], badge } = Astro.props;
+const { title, description, videoSrc, poster = "", href, tags = [], badge, bg = "bg-1" } = Astro.props;
+const bgClass = bg;
 ---
 
 <a class="project-card" href={href} target="_blank" rel="noopener noreferrer">
   <!-- Video Layer -->
   <div class="card-media">
+    <div class={`card-bg ${bgClass}`}>
+  <div class="card-grid-pattern"></div>
+  <div class="card-glow-orb orb-blue"></div>
+  <div class="card-glow-orb orb-purple"></div>
+</div>
     <video
       class="card-video"
       src={videoSrc}
@@ -32,7 +40,10 @@ const { title, description, videoSrc, poster = "", href, tags = [], badge } = As
 
   <!-- Gradient Overlay + Content -->
   <div class="card-overlay">
-    {badge && <span class="card-badge">{badge}</span>}
+    <!-- {badge && <span class="card-badge">{badge}</span>} -->
+    <span class={`card-badge ${badge === 'Live' ? 'badge-live' : badge === 'Zero-Trust' ? 'badge-coming' : ''}`}>
+  {badge}
+</span>
 
     <div class="card-body">
       <div class="card-tags">
@@ -146,6 +157,8 @@ const { title, description, videoSrc, poster = "", href, tags = [], badge } = As
     backdrop-filter: blur(4px);
     -webkit-backdrop-filter: blur(4px);
   }
+  .badge-live { background: rgba(34,197,94,0.12); border-color: rgba(34,197,94,0.3); color: #86efac; }
+.badge-coming { background: rgba(250,204,21,0.1); border-color: rgba(250,204,21,0.25); color: #fde047; }
 
   /* ── Body ────────────────────────────────────── */
   .card-body {
