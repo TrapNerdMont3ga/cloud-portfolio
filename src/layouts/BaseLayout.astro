@@ -22,49 +22,25 @@ const { title = 'TrapNerd Cloud Portfolio' } = Astro.props
 
 <body>
   <header class="site-header">
-    <div class="header-left">
-    <a href="#home" class="brand">
- <span class="brand-mascot">
-  <img
-    src="/images/trapnerd-mascot.png"
-    alt="TrapNerd logo"
-    width="32"
-    height="32"
-  />
-</span>
-  <span>TrapNerd</span>
-</a>
-    </div>
+  <div class="container flex items-center justify-between">
+    <!-- Logo + Brand -->
+    <a href="/" class="brand flex items-center gap-3">
+      <img src="/images/trapnerd-mascot.png" alt="TrapNerd" class="w-9 h-9">
+      <span class="brand-name text-2xl font-bold tracking-tighter">Trap<span class="brand-nerd text-sky-400">Nerd</span></span>
+    </a>
 
-    <nav class="header-nav" id="primary-nav">
-      <ul>
-        <li><a href="#home">Home</a></li>
-        <li><a href="#services">Services</a></li>
-        <li><a href="#portfolio">Portfolio</a></li>
-        <li><a href="#contact">Contact</a></li>
-      </ul>
+    <!-- Desktop Navigation -->
+    <nav class="header-nav hidden md:flex items-center gap-8">
+      <a href="#home" class="nav-link">Home</a>
+      <a href="#services" class="nav-link">Services</a>
+      <a href="#portfolio" class="nav-link">Portfolio</a>
+      <a href="#contact" class="nav-link">Contact</a>
     </nav>
 
-    <div class="header-right">
-      <a href="#contact" class="cta-btn">Get Started</a>
-
-      <button
-        id="theme-toggle"
-        aria-label="Toggle dark/light mode"
-        class="icon-btn"
-      >
-        🌙 / ☀️
-      </button>
-
-      <button
-        id="menu-toggle"
-        aria-label="Open menu"
-        class="icon-btn hamburger"
-      >
-        ☰
-      </button>
-    </div>
-  </header>
+    <!-- Mobile Menu Button (we'll add JS later if needed) -->
+    <button class="hamburger md:hidden text-2xl">☰</button>
+  </div>
+</header>
 
   <slot />
 

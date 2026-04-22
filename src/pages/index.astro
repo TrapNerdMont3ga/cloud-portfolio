@@ -1,11 +1,11 @@
 ---
 import BaseLayout from '../layouts/BaseLayout.astro'
-import Mascot from '../components/Mascot.astro'
 import ProjectCard from '../components/ProjectCard.astro'
 ---
 
 <BaseLayout>
-<!-- Home / Hero Section - Upgraded TrapNerd Style -->
+
+<!-- Home / Hero Section -->
 <section id="home" class="hero-section relative min-h-screen flex items-center overflow-hidden">
   
   <!-- Background Layer -->
@@ -57,20 +57,14 @@ import ProjectCard from '../components/ProjectCard.astro'
             class="w-full max-w-[380px] drop-shadow-2xl transition-transform duration-500 hover:scale-105"
             loading="eager"
           />
-          <!-- Subtle glow behind mascot -->
           <div class="absolute inset-0 bg-sky-500/10 blur-3xl rounded-full -z-10 scale-110"></div>
         </div>
       </div>
 
     </div>
   </div>
-
-  <!-- Scroll indicator -->
-  <!-- <div class="absolute bottom-10 left-1/2 -translate-x-1/2 text-zinc-500 flex flex-col items-center gap-2 text-sm">
-    <span>Scroll to explore</span>
-    <div class="w-px h-12 bg-gradient-to-b from-transparent via-zinc-500 to-transparent"></div>
-  </div> -->
 </section>
+
 <!-- Services Section -->
 <section id="services" class="section py-24 bg-[#0a1628]">
   <div class="container">
@@ -78,54 +72,57 @@ import ProjectCard from '../components/ProjectCard.astro'
     <p class="text-center text-zinc-400 max-w-md mx-auto mb-16">
       Tailored cloud, AI, and security solutions for small to mid-sized businesses.
     </p>
-    <!-- We'll make this beautiful with cards tomorrow -->
+    <!-- Beautiful service cards coming tomorrow -->
   </div>
 </section>
-  <!-- Portfolio Section -->
+
+<!-- Portfolio Section -->
 <section id="portfolio" class="section portfolio-section">
   <div class="container">
     <h2>Portfolio</h2>
     <p>Check out some of our projects and client work.</p>
 
     <div class="portfolio-grid">
-<!-- Project Card: OptiPrim3 -->
-<ProjectCard
-  title="OptiPrim3 – AI Logistics Platform"
-  description="Scalable logistics with dispatch automation and container tracking."
-  videoSrc="/videos/hero.mov"
-  poster="/images/optiprim3-thumb.jpg"
-  href="https://optiprim3.com"
-  tags={["AWS", "AI", "Logistics"]}
-  badge="Live"
-  bg="bg-1"  
-/>
+      <!-- Project Card: OptiPrim3 -->
+      <ProjectCard
+        title="OptiPrim3 – AI Logistics Platform"
+        description="Scalable logistics with dispatch automation and container tracking."
+        videoSrc="/videos/hero.mov"
+        poster="/images/optiprim3-thumb.jpg"
+        href="https://optiprim3.com"
+        tags={["AWS", "AI", "Logistics"]}
+        badge="Live"
+        bg="bg-1"  
+      />
 
       <!-- Project Card 2 -->
-<ProjectCard
-  title="Static Site on AWS S3"
-  description="Zero-server hosting with global CDN distribution, custom domains, and automated CI/CD deployment."
-  videoSrc="/videos/s3-site.mov"
-  poster="/images/s3-thumb.jpg"
-  href="https://your-s3-project-link.com"
-  tags={["S3", "CloudFront", "DNS"]}
-  badge="Case Study" 
-  bg="bg-2" 
-/>
-      <!-- Project Card 3 -->
-<ProjectCard
-  title="Cloud Security with AWS IAM"
-  description="Role-based access control architecture with least-privilege policies and automated compliance auditing."
-  videoSrc="/videos/iam-security.mov"
-  poster="/images/iam-thumb.jpg"
-  href="https://your-iam-project-link.com"
-  tags={["IAM", "Security", "Audit"]}
-  badge="Zero-Trust"
-  bg="bg-3" 
-/>
+      <ProjectCard
+        title="Static Site on AWS S3"
+        description="Zero-server hosting with global CDN distribution, custom domains, and automated CI/CD deployment."
+        videoSrc="/videos/s3-site.mov"
+        poster="/images/s3-thumb.jpg"
+        href="https://your-s3-project-link.com"
+        tags={["S3", "CloudFront", "DNS"]}
+        badge="Case Study" 
+        bg="bg-2" 
+      />
 
+      <!-- Project Card 3 -->
+      <ProjectCard
+        title="Cloud Security with AWS IAM"
+        description="Role-based access control architecture with least-privilege policies and automated compliance auditing."
+        videoSrc="/videos/iam-security.mov"
+        poster="/images/iam-thumb.jpg"
+        href="https://your-iam-project-link.com"
+        tags={["IAM", "Security", "Audit"]}
+        badge="Zero-Trust"
+        bg="bg-3" 
+      />
+    </div>
+  </div>
 </section>
 
-<!-- Contact Section - Premium TrapNerd Style -->
+<!-- Contact Section - Premium Style -->
 <section id="contact" class="contact-section relative py-24 overflow-hidden">
   
   <!-- Background Effects -->
@@ -191,55 +188,14 @@ import ProjectCard from '../components/ProjectCard.astro'
       </form>
 
       <p class="text-center text-zinc-500 text-sm mt-10">
-        Prefer email? Reach us at <a href="mailto:hello@trapnerd.cloud" class="text-sky-400 hover:text-sky-300 underline">hello@trapnerd.cloud</a>
+        Prefer email? Reach us at <a href="mailto:admin@trapnerd.cloud" class="text-sky-400 hover:text-sky-300 underline">hello@trapnerd.cloud</a>
       </p>
     </div>
   </div>
 </section>
-<!-- Contact Section -->
-<!-- <section id="contact" class="section contact-section">
-  <div class="container">
-    <h2>Contact Us</h2>
-    <p>Get in touch for a free consultation or quote.</p>
 
-<form id="contact-form">
-  <input type="text" name="name" placeholder="Name" required />
-  <input type="email" name="email" placeholder="Email" required />
-  <textarea name="message" placeholder="Message" required></textarea>
-  <button type="submit">Send Message</button>
-</form>
-
-<script type="module">
-  const form = document.getElementById('contact-form');
-
-  form.addEventListener('submit', async (e) => {
-    e.preventDefault();
-
-    const formData = new FormData(form);
-    const data = Object.fromEntries(formData);
-
-    try {
-      const res = await fetch('/api/contact', {
-        method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify(data),
-      });
-
-      const result = await res.json();
-
-      if (res.ok) {
-        alert('Message sent successfully!');
-        form.reset();
-      } else {
-        alert(result.error || 'Failed to send message.');
-      }
-    } catch (err) {
-      console.error(err);
-      alert('Error sending message.');
-    }
-  });
-</script>
 <script>
+  // Active Navigation Highlight on Scroll
   const navLinks = document.querySelectorAll('.nav-link');
   const sections = ['home', 'services', 'portfolio', 'contact'];
 
@@ -267,5 +223,5 @@ import ProjectCard from '../components/ProjectCard.astro'
   window.addEventListener('scroll', updateActiveNav);
   updateActiveNav(); // Run once on load
 </script>
-</section> -->
+
 </BaseLayout>
