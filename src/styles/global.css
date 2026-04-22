@@ -61,70 +61,108 @@ h1 { font-size: 3rem; }
 h2 { font-size: 2rem; }
 
 /* ================================
-   Header
+   HEADER - Clean & Professional
    ================================ */
 .site-header {
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  padding: 1rem 2rem;
-  background: rgba(15, 23, 42, 0.95);
-  backdrop-filter: blur(12px);
-  border-bottom: 1px solid rgba(56, 189, 248, 0.1);
+  background: rgba(15, 23, 42, 0.98);
+  backdrop-filter: blur(16px);
+  border-bottom: 1px solid rgba(56, 189, 248, 0.12);
   position: sticky;
   top: 0;
-  width: 100%;
   z-index: 1000;
-  transition: padding 0.3s ease, box-shadow 0.3s ease;
+  transition: all 0.3s ease;
 }
 
 .site-header.scrolled {
-  padding: 0.6rem 2rem;
-  box-shadow: 0 6px 20px rgba(0,0,0,0.25);
+  padding-top: 0.75rem;
+  padding-bottom: 0.75rem;
+  box-shadow: 0 10px 30px -10px rgba(0, 0, 0, 0.5);
 }
 
-.header-nav ul {
-  display: flex;
-  gap: var(--spacing-lg);
-  list-style: none;
+.container {
+  max-width: 1280px;
+  margin: 0 auto;
+  padding: 0 2rem;
 }
 
-.header-nav a {
-  color: var(--color-text);
-  font-weight: 600;
-  transition: color 0.2s ease;
-}
-
-.header-nav a:hover {
-  color: var(--color-primary);
-}
-
-.header-left, .header-right {
+.brand {
   display: flex;
   align-items: center;
-  gap: var(--spacing-sm);
+  gap: 14px;
+  font-size: 1.85rem;
+  font-weight: 800;
+  letter-spacing: -0.04em;
+  color: #ffffff;
+  text-decoration: none;
+  transition: transform 0.2s ease;
 }
 
-/* Active nav link */
-.header-nav a {
-  position: relative;
+.brand:hover {
+  transform: scale(1.03);
+}
+
+.brand img {
+  width: 46px;
+  height: 46px;
+  filter: drop-shadow(0 4px 8px rgba(56, 189, 248, 0.3));
+}
+
+.brand-name {
+  color: #ffffff;
+}
+
+.brand-nerd {
+  color: #38bdf8;
+}
+
+.header-nav {
+  display: flex;
+  align-items: center;
+  gap: 2.25rem;
+}
+
+.nav-link {
+  color: #cbd5e1;
   font-weight: 500;
-  opacity: 0.8;
+  font-size: 1.05rem;
+  position: relative;
+  transition: color 0.2s ease;
+  padding: 0.25rem 0;
 }
 
-.header-nav a.active {
-  opacity: 1;
-  color: var(--color-primary);
+.nav-link:hover {
+  color: #67e8f9;
 }
 
-.header-nav a.active::after {
+.nav-link.active {
+  color: #38bdf8;
+}
+
+.nav-link.active::after {
   content: '';
   position: absolute;
   bottom: -6px;
   left: 0;
   width: 100%;
-  height: 2px;
-  background-color: var(--color-primary);
+  height: 2.5px;
+  background: linear-gradient(to right, #38bdf8, #67e8f9);
+  border-radius: 2px;
+}
+
+/* Mobile */
+@media (max-width: 768px) {
+  .header-nav {
+    display: none;
+  }
+  
+  .brand {
+    font-size: 1.65rem;
+  }
+  
+  .brand img {
+    width: 38px;
+    height: 38px;
+  }
 }
 
 /* ================================
@@ -176,7 +214,7 @@ h2 { font-size: 2rem; }
 }
 
 /* ================================
-   HERO SECTION - Premium Dark Tech Style
+   HERO SECTION
    ================================ */
 .hero-section {
   position: relative;
@@ -239,7 +277,7 @@ h2 { font-size: 2rem; }
 }
 
 /* ================================
-   PROJECT CARDS - Matching Premium Style
+   PROJECT CARDS
    ================================ */
 .project-card {
   position: relative;
@@ -350,7 +388,7 @@ h2 { font-size: 2rem; }
 }
 
 /* ================================
-   Section Styling
+   SECTION STYLING
    ================================ */
 .section {
   padding: var(--spacing-lg) 0;
@@ -370,13 +408,14 @@ h2 { font-size: 2rem; }
   }
 }
 
-/* Keep your existing mascot & brand styles */
+/* Mascot Styles */
 .mascot-head, .mascot-glasses, .mascot-cap, .mascot-smirk {
   fill: none;
   stroke: var(--brand-color);
   stroke-linecap: round;
   stroke-linejoin: round;
 }
+
 /* ================================
    CONTACT SECTION - Premium Style
    ================================ */
@@ -388,6 +427,7 @@ h2 { font-size: 2rem; }
 .contact-section input,
 .contact-section textarea {
   transition: all 0.3s ease;
+  font-size: 1.05rem;
 }
 
 .contact-section input:focus,
@@ -398,14 +438,7 @@ h2 { font-size: 2rem; }
 }
 
 .contact-section label {
-  font-size: 0.95rem;
-}
-
-.contact-form-success {
-  background: rgba(16, 185, 129, 0.1);
-  border: 1px solid rgba(16, 185, 129, 0.3);
-  color: #4ade80;
-  padding: 1rem;
-  border-radius: 1rem;
-  text-align: center;
+  font-size: 0.85rem;
+  letter-spacing: 0.5px;
+  font-weight: 500;
 }
