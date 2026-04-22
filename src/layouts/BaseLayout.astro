@@ -21,32 +21,22 @@ const { title = 'TrapNerd Cloud Portfolio' } = Astro.props
 </head>
 
 <body>
-  <header class="site-header">
-  <div class="container flex items-center justify-between py-4">
-    
-    <!-- Logo / Brand -->
-    <a href="/" class="brand flex items-center gap-3">
-      <img 
-        src="/images/trapnerd-mascot.png" 
-        alt="TrapNerd" 
-        class="w-10 h-10"
-      />
-      <span class="brand-name text-2xl font-bold tracking-tighter">
-        Trap<span class="brand-nerd">Nerd</span>
-      </span>
-    </a>
+<header class="site-header">
 
-    <!-- Desktop Navigation -->
-    <nav class="header-nav hidden md:flex items-center gap-8 text-sm font-medium">
-      <a href="#home" class="nav-link">Home</a>
-      <a href="#services" class="nav-link">Services</a>
-      <a href="#portfolio" class="nav-link">Portfolio</a>
-      <a href="#contact" class="nav-link">Contact</a>
-    </nav>
+  <!-- LEFT: Brand -->
+  <a href="/" class="brand">
+    <img src="/images/trapnerd-mascot.png" alt="TrapNerd Logo" />
+    <span class="brand-name">Trap<span class="brand-nerd">Nerd</span></span>
+  </a>
 
-    <!-- Mobile Hamburger (we can expand later) -->
-    <button class="hamburger md:hidden text-3xl text-white">☰</button>
-  </div>
+  <!-- RIGHT: Nav -->
+  <nav class="header-nav">
+    <a href="#home" class="nav-link">Home</a>
+    <a href="#services" class="nav-link">Services</a>
+    <a href="#portfolio" class="nav-link">Portfolio</a>
+    <a href="#contact" class="nav-link">Contact</a>
+  </nav>
+
 </header>
 
   <slot />
