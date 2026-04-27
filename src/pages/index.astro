@@ -142,22 +142,21 @@ import ProjectCard from '../components/ProjectCard.astro'
     </div>
 
     <div class="max-w-xl mx-auto">
-      <form
-  action="https://formspree.io/f/xrerwggn"
-  method="POST"
->
-  <label>
-    Your email:
-    <input type="email" name="email">
-  </label>
-  <label>
-    Your message:
-    <textarea name="message"></textarea>
-  </label>
-  <!-- your other form fields go here -->
-  <button type="submit">Send</button>
-</form>
+<form class="contact-form" action="https://formspree.io/f/xrerwggn" method="POST">
+  
+  <h2>Contact</h2>
+  <p class="form-subtext">Have a project, question, or opportunity? Let’s connect.</p>
 
+  <input type="text" name="name" placeholder="Name" required>
+  <input type="email" name="email" placeholder="Email" required>
+  <input type="hidden" name="_redirect" value="https://trapnerd.cloud/thank-you.html">
+  <textarea name="message" rows="5" placeholder="Message" required></textarea>
+
+  <button type="submit">Send Message</button>
+
+  <p class="form-note">Response time: within 24–48 hours</p>
+
+</form>
       <p class="text-center text-zinc-500 text-sm mt-10">
         Prefer email? Reach us at <a href="mailto:admin@trapnerd.cloud" class="text-sky-400 hover:text-sky-300 underline">admin@trapnerd.cloud</a>
       </p>
