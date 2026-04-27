@@ -142,53 +142,24 @@ import ProjectCard from '../components/ProjectCard.astro'
     </div>
 
     <div class="max-w-xl mx-auto">
-      <form id="contact-form" class="space-y-8">
-        
-        <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
-          <div>
-            <label class="block text-sm font-medium text-zinc-400 mb-2 tracking-widest">YOUR NAME</label>
-            <input 
-              type="text" 
-              name="name" 
-              placeholder="John Doe" 
-              required 
-              class="w-full bg-zinc-900/80 border border-zinc-700 focus:border-sky-500 rounded-2xl px-6 py-4 text-white placeholder-zinc-500 focus:outline-none transition-all duration-300"
-            />
-          </div>
-          <div>
-            <label class="block text-sm font-medium text-zinc-400 mb-2 tracking-widest">EMAIL ADDRESS</label>
-            <input 
-              type="email" 
-              name="email" 
-              placeholder="you@business.com" 
-              required 
-              class="w-full bg-zinc-900/80 border border-zinc-700 focus:border-sky-500 rounded-2xl px-6 py-4 text-white placeholder-zinc-500 focus:outline-none transition-all duration-300"
-            />
-          </div>
-        </div>
-
-        <div>
-          <label class="block text-sm font-medium text-zinc-400 mb-2 tracking-widest">MESSAGE</label>
-          <textarea 
-            name="message" 
-            rows="7" 
-            placeholder="Tell us about your current infrastructure, goals, or any challenges you're facing..." 
-            required 
-            class="w-full bg-zinc-900/80 border border-zinc-700 focus:border-sky-500 rounded-3xl px-6 py-5 text-white placeholder-zinc-500 focus:outline-none resize-y transition-all duration-300"
-          ></textarea>
-        </div>
-
-        <button 
-          type="submit"
-          class="w-full cta-btn text-lg py-6 rounded-2xl font-semibold flex items-center justify-center gap-3 group hover:scale-[1.02] transition-all"
-        >
-          Send Message
-          <span class="group-hover:translate-x-1 transition-transform">→</span>
-        </button>
-      </form>
+      <form
+  action="https://formspree.io/f/xrerwggn"
+  method="POST"
+>
+  <label>
+    Your email:
+    <input type="email" name="email">
+  </label>
+  <label>
+    Your message:
+    <textarea name="message"></textarea>
+  </label>
+  <!-- your other form fields go here -->
+  <button type="submit">Send</button>
+</form>
 
       <p class="text-center text-zinc-500 text-sm mt-10">
-        Prefer email? Reach us at <a href="mailto:admin@trapnerd.cloud" class="text-sky-400 hover:text-sky-300 underline">hello@trapnerd.cloud</a>
+        Prefer email? Reach us at <a href="mailto:admin@trapnerd.cloud" class="text-sky-400 hover:text-sky-300 underline">admin@trapnerd.cloud</a>
       </p>
     </div>
   </div>
