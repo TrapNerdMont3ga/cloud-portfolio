@@ -65,14 +65,53 @@ import ProjectCard from '../components/ProjectCard.astro'
   </div>
 </section>
 
-<!-- Services Section -->
-<section id="services" class="section py-24 bg-[#0a1628]">
-  <div class="container">
-    <h2 class="text-center text-4xl font-bold mb-4">Our Services</h2>
-    <p class="text-center text-zinc-400 max-w-md mx-auto mb-16">
-      Tailored cloud, AI, and security solutions for small to mid-sized businesses.
-    </p>
-    <!-- Beautiful service cards coming tomorrow -->
+<!-- Services Section - Rotating Spotlight (Upgraded) -->
+<section id="services" class="section relative py-24 overflow-hidden bg-[#0a1628]">
+  
+  <!-- Background Effects -->
+  <div class="absolute inset-0 card-grid-pattern" style="background-size: 50px 50px; opacity: 0.6;"></div>
+  <div class="card-glow-orb orb-blue" style="top: 10%; left: 10%; width: 420px; height: 420px; opacity: 0.18;"></div>
+  <div class="card-glow-orb orb-purple" style="bottom: 20%; right: 15%; width: 360px; height: 360px; opacity: 0.14;"></div>
+
+  <div class="container relative z-10">
+    <div class="text-center mb-16">
+      <h2 class="text-5xl md:text-6xl font-bold tracking-tighter mb-4">What I Deliver</h2>
+      <p class="text-xl text-zinc-400 max-w-xl mx-auto">
+        Four core services. Real results for small businesses and startups.
+      </p>
+    </div>
+
+    <!-- Main Rotator Card -->
+    <div id="service-rotator" class="max-w-3xl mx-auto bg-gradient-to-br from-zinc-900 to-zinc-950 border border-zinc-700 rounded-3xl p-12 md:p-16 text-center transition-all duration-700 hover:border-sky-500/50">
+      
+      <div id="service-icon" class="text-7xl mb-8 transition-all duration-500">🌐</div>
+      
+      <h3 id="service-title" class="text-4xl md:text-5xl font-semibold mb-6 text-white">Web Development</h3>
+      
+      <p id="service-description" class="text-lg md:text-xl text-zinc-400 leading-relaxed min-h-[140px]">
+        Modern, fast-loading websites that look professional and actually bring in customers.
+      </p>
+
+      <!-- Navigation -->
+      <div class="flex justify-center gap-4 mt-12">
+        <button onclick="prevService()" 
+                class="px-8 py-4 border border-zinc-700 hover:border-sky-500 rounded-2xl text-sm font-medium transition-all hover:bg-zinc-900">
+          ← Previous
+        </button>
+        <button onclick="nextService()" 
+                class="px-8 py-4 border border-zinc-700 hover:border-sky-500 rounded-2xl text-sm font-medium transition-all hover:bg-zinc-900">
+          Next →
+        </button>
+      </div>
+    </div>
+
+    <!-- Service Pills -->
+    <div class="flex flex-wrap justify-center gap-3 mt-12">
+      <button onclick="showService(0)" class="service-pill active">Web Development</button>
+      <button onclick="showService(1)" class="service-pill">AI Automation</button>
+      <button onclick="showService(2)" class="service-pill">Cloud Architecture</button>
+      <button onclick="showService(3)" class="service-pill">Cybersecurity</button>
+    </div>
   </div>
 </section>
 
@@ -84,6 +123,17 @@ import ProjectCard from '../components/ProjectCard.astro'
 
     <div class="portfolio-grid">
       <!-- Project Card: OptiPrim3 -->
+       <!-- TrapNerd.cloud - Featured Cloud Project -->
+<ProjectCard
+  title="TrapNerd.cloud – Modern AWS Portfolio"
+  description="Fully static site hosted on Amazon S3 with CloudFront CDN for global edge delivery, Route 53 for custom domain + HTTPS, and automated deployments via GitHub Actions. Built with Astro, Tailwind CSS, and a custom dark-tech design system."
+  videoSrc="/videos/hero.mov"
+  poster="/images/trapnerd-thumb.jpg"
+  href="https://trapnerd.cloud"
+  tags={["S3", "CloudFront", "Route 53", "GitHub Actions", "Astro"]}
+  badge="Live"
+  bg="bg-4" 
+/>
       <ProjectCard
         title="OptiPrim3 – AI Logistics Platform"
         description="Scalable logistics with dispatch automation and container tracking."
@@ -192,6 +242,68 @@ import ProjectCard from '../components/ProjectCard.astro'
 
   window.addEventListener('scroll', updateActiveNav);
   updateActiveNav(); // Run once on load
+</script>
+
+<script>
+  const services = [
+    { 
+      icon: "🌐", 
+      title: "Web Development", 
+      desc: "Modern, fast-loading websites that look professional and actually bring in customers." 
+    },
+    { 
+      icon: "🤖", 
+      title: "AI Automation", 
+      desc: "Smart AI workflows that eliminate repetitive tasks and save you 10–20 hours every week." 
+    },
+    { 
+      icon: "☁️", 
+      title: "Cloud Architecture", 
+      desc: "Scalable, secure, and cost-efficient AWS infrastructure that grows with your business." 
+    },
+    { 
+      icon: "🔒", 
+      title: "Cybersecurity", 
+      desc: "Zero Trust security setups so you can sleep peacefully knowing your business is protected." 
+    }
+  ];
+
+  let current = 0;
+
+  function showService(index: any) {
+    current = index % services.length;
+
+    const iconEl = document.getElementById('service-icon');
+    const titleEl = document.getElementById('service-title');
+    const descEl = document.getElementById('service-description');
+
+    if (iconEl) iconEl.textContent = services[current].icon;
+    if (titleEl) titleEl.textContent = services[current].title;
+    if (descEl) descEl.textContent = services[current].desc;
+
+    // Update active pill
+    document.querySelectorAll('.service-pill').forEach((pill, i) => {
+      pill.classList.toggle('active', i === current);
+    });
+  }
+
+  function nextService() {
+    current = (current + 1) % services.length;
+    showService(current);
+  }
+
+  function prevService() {
+    current = (current - 1 + services.length) % services.length;
+    showService(current);
+  }
+
+  // Auto-rotate every 4 seconds
+  setInterval(nextService, 4000);
+
+  // Initialize when page loads
+  document.addEventListener('DOMContentLoaded', () => {
+    showService(0);
+  });
 </script>
 
 </BaseLayout>
