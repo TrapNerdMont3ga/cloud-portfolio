@@ -431,26 +431,101 @@ h2 { font-size: 2rem; }
 /* ================================
    CONTACT SECTION - Premium Style
    ================================ */
-.contact-section {
-  position: relative;
-  background-color: #0a1628;
+.contact-form {
+  max-width: 500px;
+  margin: 40px auto;
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+  color: white;
 }
 
-.contact-section input,
-.contact-section textarea {
-  transition: all 0.3s ease;
-  font-size: 1.05rem;
+.contact-form h2 {
+  margin-bottom: 5px;
 }
 
-.contact-section input:focus,
-.contact-section textarea:focus {
-  border-color: #38bdf8;
-  box-shadow: 0 0 0 4px rgba(56, 189, 248, 0.15);
-  transform: translateY(-1px);
+.form-subtext {
+  font-size: 0.9rem;
+  color: #aaa;
+  margin-bottom: 10px;
 }
 
-.contact-section label {
-  font-size: 0.85rem;
-  letter-spacing: 0.5px;
+.contact-form input,
+.contact-form textarea {
+  padding: 12px;
+  border-radius: 10px;
+  border: 1px solid #222;
+  background: #111;
+  color: #fff;
+  font-size: 0.95rem;
+}
+
+.contact-form input:focus,
+.contact-form textarea:focus {
+  outline: none;
+  border-color: #00ff99;
+}
+
+.contact-form button {
+  padding: 12px;
+  border-radius: 10px;
+  border: none;
+  background: #00ff99;
+  color: #000;
+  font-weight: bold;
+  cursor: pointer;
+  transition: 0.2s ease;
+}
+
+.contact-form button:hover {
+  background: #00cc7a;
+}
+
+.form-note {
+  font-size: 0.8rem;
+  color: #777;
+  text-align: center;
+}
+
+/* ================================
+   SERVICES PILLS - Spaced + Illuminating
+   ================================ */
+.service-pill {
+  padding: 14px 28px;
+  border-radius: 9999px;
+  border: 1px solid rgba(56, 189, 248, 0.25);
+  background: rgba(15, 23, 42, 0.85);
+  color: #94a3b8;
+  font-size: 1rem;
   font-weight: 500;
+  transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+  cursor: pointer;
+  white-space: nowrap;
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.3);
+}
+
+.service-pill:hover {
+  border-color: #38bdf8;
+  color: #67e8f9;
+  background: rgba(56, 189, 248, 0.12);
+  transform: translateY(-3px);
+  box-shadow: 0 0 20px rgba(56, 189, 248, 0.4);
+}
+
+.service-pill.active {
+  background: rgba(56, 189, 248, 0.18);
+  border-color: #38bdf8;
+  color: #67e8f9;
+  box-shadow: 0 0 25px rgba(56, 189, 248, 0.5);
+}
+/* ================================
+   Bento Services Cards
+   ================================ */
+#services [class*="bg-[#111827]"] {
+  box-shadow: 0 10px 30px -10px rgba(0, 0, 0, 0.5);
+}
+
+#services [class*="bg-[#111827]"]:hover {
+  transform: translateY(-8px);
+  box-shadow: 0 20px 40px -10px rgba(56, 189, 248, 0.3);
 }
